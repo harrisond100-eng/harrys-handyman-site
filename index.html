@@ -134,7 +134,7 @@
       /* Swap the url() below for a real photo of your work */
       background:
         linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-        url('https://images.unsplash.com/photo-1581244277943-fe4a9c777189?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+        url('images/hero.jpg') center/cover no-repeat;
       color: var(--white);
     }
 
@@ -229,7 +229,7 @@
       min-height: 420px;
       background:
         linear-gradient(rgba(0,0,0,0.15), rgba(0,0,0,0.15)),
-        url('https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&fit=crop&w=900&q=80') center/cover no-repeat;
+        url('images/about.jpg') center/cover no-repeat;
     }
     .about-text .eyebrow {
       font-family: var(--head);
@@ -312,79 +312,123 @@
       transition: color 0.2s ease;
     }
 
-    /* ---------- Work / Portfolio ---------- */
-    .work-grid {
+    /* ---------- How It Works ---------- */
+    .steps-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 0;
+      gap: 2.5rem;
     }
-    .work-tile {
+    .step {
+      text-align: center;
+      padding: 0 1rem;
       position: relative;
-      aspect-ratio: 4 / 3;
-      background-size: cover;
-      background-position: center;
-      overflow: hidden;
     }
-    .work-tile::after {
+    /* connector line between steps on wide screens */
+    .step:not(:last-child)::after {
       content: "";
       position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0);
-      transition: background 0.25s ease;
+      top: 34px;
+      right: -1.25rem;
+      width: 2.5rem;
+      height: 1px;
+      background: var(--line);
     }
-    .work-tile:hover::after { background: rgba(0,0,0,0.55); }
-    .work-tile .label {
-      position: absolute;
-      inset: 0;
+    .step-num {
+      font-family: var(--head);
+      font-weight: 300;
+      font-size: 2rem;
+      width: 68px;
+      height: 68px;
+      margin: 0 auto 1.5rem;
+      border: 2px solid var(--black);
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      z-index: 2;
-      opacity: 0;
-      transition: opacity 0.25s ease;
-      color: var(--white);
-      font-family: var(--head);
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      font-size: 13px;
+      color: var(--black);
+      background: var(--white);
     }
-    .work-tile:hover .label { opacity: 1; }
+    .step h3 {
+      font-family: var(--head);
+      font-weight: 500;
+      font-size: 1.1rem;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.85rem;
+      color: var(--black);
+    }
+    .step p {
+      color: var(--gray);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      text-transform: none;
+    }
+    .steps-cta { text-align: center; margin-top: 3.5rem; }
 
     /* ---------- Testimonial ---------- */
-    .testimonial {
-      background:
-        linear-gradient(rgba(0,0,0,0.78), rgba(0,0,0,0.78)),
-        url('https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
-      color: var(--white);
-      text-align: center;
-    }
-    .testimonial .container { max-width: 760px; }
-    .testimonial .eyebrow {
+    .reviews { background: var(--bg-alt); }
+    .reviews-badge {
+      margin-top: 1.5rem;
       font-family: var(--head);
       text-transform: uppercase;
-      letter-spacing: 0.3em;
+      letter-spacing: 0.12em;
       font-size: 12px;
-      color: rgba(255,255,255,0.7);
-      display: block;
-      margin-bottom: 2rem;
+      color: var(--muted);
     }
-    .testimonial blockquote {
+    .reviews-badge .stars { color: #f5a623; letter-spacing: 2px; margin-right: 0.5rem; }
+    .reviews-badge strong { color: var(--black); }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.75rem;
+    }
+    .review-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      padding: 2.1rem 1.9rem;
+      display: flex;
+      flex-direction: column;
+    }
+    .review-card .stars {
+      color: #f5a623;
+      letter-spacing: 3px;
+      font-size: 15px;
+      margin-bottom: 1.1rem;
+    }
+    .review-card p {
+      color: var(--gray);
+      line-height: 1.75;
+      margin-bottom: 1.75rem;
+      text-transform: none;
+      flex: 1;
+    }
+    .review-author { display: flex; align-items: center; gap: 0.9rem; }
+    .review-avatar {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: var(--black);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-family: var(--head);
-      font-weight: 300;
-      font-size: clamp(1.3rem, 3vw, 2rem);
-      line-height: 1.5;
-      letter-spacing: 0.02em;
+      font-weight: 500;
       text-transform: uppercase;
+      flex-shrink: 0;
     }
-    .testimonial cite {
-      display: block;
-      margin-top: 2rem;
-      font-family: var(--body);
-      font-style: normal;
-      font-size: 13px;
-      letter-spacing: 0.15em;
+    .review-author .who strong {
+      font-family: var(--head);
       text-transform: uppercase;
-      color: rgba(255,255,255,0.7);
+      letter-spacing: 0.08em;
+      font-size: 13px;
+      color: var(--black);
+      display: block;
+    }
+    .review-author .who span {
+      font-size: 11px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
     }
 
     /* ---------- Contact ---------- */
@@ -452,6 +496,14 @@
     form textarea:focus { outline: none; border-color: var(--black); }
     form textarea { resize: vertical; min-height: 140px; }
     form .btn { align-self: flex-start; }
+    .form-status {
+      margin-top: 1rem;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      min-height: 1em;
+    }
+    .form-status.success { color: #1c7c34; }
+    .form-status.error { color: #c8202e; }
 
     /* ---------- Footer ---------- */
     footer {
@@ -475,15 +527,16 @@
     /* ---------- Responsive ---------- */
     @media (max-width: 900px) {
       .services-list { grid-template-columns: repeat(2, 1fr); }
-      .work-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 768px) {
       .nav-links { display: none; }
-      .about-grid, .contact-grid { grid-template-columns: 1fr; }
+      .about-grid, .contact-grid, .reviews-grid, .steps-grid { grid-template-columns: 1fr; }
+      .steps-grid { gap: 3rem; }
+      .step:not(:last-child)::after { display: none; }
       section { padding: 4.5rem 0; }
     }
     @media (max-width: 560px) {
-      .services-list, .work-grid { grid-template-columns: 1fr; }
+      .services-list { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -497,7 +550,7 @@
         <li><a href="#home">Home</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#services">Services</a></li>
-        <li><a href="#work">Work</a></li>
+        <li><a href="#process">How It Works</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
@@ -555,56 +608,116 @@
         <div class="rule"></div>
       </div>
       <div class="services-list">
-        <div class="service-item"><span class="s-ico">⚡</span><h3>Basic Electrical</h3></div>
-        <div class="service-item"><span class="s-ico">🚰</span><h3>Basic Plumbing</h3></div>
-        <div class="service-item"><span class="s-ico">🧱</span><h3>Drywall Repair</h3></div>
-        <div class="service-item"><span class="s-ico">◧</span><h3>Tile Repair</h3></div>
-        <div class="service-item"><span class="s-ico">🚪</span><h3>Door Installation</h3></div>
-        <div class="service-item"><span class="s-ico">🪚</span><h3>Finish Carpentry</h3></div>
-        <div class="service-item"><span class="s-ico">🧷</span><h3>Child Proofing</h3></div>
-        <div class="service-item"><span class="s-ico">🔌</span><h3>Appliance Installation</h3></div>
-        <div class="service-item"><span class="s-ico">♿</span><h3>Wheelchair Ramps</h3></div>
-        <div class="service-item"><span class="s-ico">📚</span><h3>Shelving Installation</h3></div>
-        <div class="service-item"><span class="s-ico">🖼️</span><h3>Picture Hanging</h3></div>
-        <div class="service-item"><span class="s-ico">🚿</span><h3>Faucet Repair / Replace</h3></div>
-        <div class="service-item"><span class="s-ico">📺</span><h3>TV &amp; Tech Hookups</h3></div>
+        <div class="service-item"><span class="s-ico">🔧</span><h3>General Repairs</h3></div>
+        <div class="service-item"><span class="s-ico">🏗️</span><h3>General Construction</h3></div>
+        <div class="service-item"><span class="s-ico">🏠</span><h3>Home Maintenance &amp; Repairs</h3></div>
+        <div class="service-item"><span class="s-ico">🛠️</span><h3>Remodeling</h3></div>
+        <div class="service-item"><span class="s-ico">⚡</span><h3>Electrical Work</h3></div>
+        <div class="service-item"><span class="s-ico">🚰</span><h3>Plumbing Fixture Installation</h3></div>
+        <div class="service-item"><span class="s-ico">🚿</span><h3>Repair Water Fixtures</h3></div>
+        <div class="service-item"><span class="s-ico">🧱</span><h3>Drywall Installation</h3></div>
+        <div class="service-item"><span class="s-ico">🩹</span><h3>Drywall Repair</h3></div>
+        <div class="service-item"><span class="s-ico">▦</span><h3>Flooring Installation</h3></div>
+        <div class="service-item"><span class="s-ico">◧</span><h3>Flooring Repair</h3></div>
+        <div class="service-item"><span class="s-ico">◩</span><h3>Tile Work Installation</h3></div>
+        <div class="service-item"><span class="s-ico">◪</span><h3>Tile Work Replacement</h3></div>
+        <div class="service-item"><span class="s-ico">🎨</span><h3>Interior Painting</h3></div>
+        <div class="service-item"><span class="s-ico">🖌️</span><h3>Exterior Painting</h3></div>
+        <div class="service-item"><span class="s-ico">🌀</span><h3>Fan Installation</h3></div>
+        <div class="service-item"><span class="s-ico">💨</span><h3>Fan Repair</h3></div>
+        <div class="service-item"><span class="s-ico">📺</span><h3>TV Mounting</h3></div>
+        <div class="service-item"><span class="s-ico">🔌</span><h3>TV &amp; Tech Hookups</h3></div>
+        <div class="service-item"><span class="s-ico">🗄️</span><h3>Cabinet Repair</h3></div>
+        <div class="service-item"><span class="s-ico">📚</span><h3>Custom Shelf Building</h3></div>
         <div class="service-item"><span class="s-ico">🛋️</span><h3>Furniture Assembly</h3></div>
-        <div class="service-item"><span class="s-ico">🌀</span><h3>Ceiling Fan Install</h3></div>
-        <div class="service-item"><span class="s-ico">🎨</span><h3>Interior &amp; Exterior Painting</h3></div>
-        <div class="service-item"><span class="s-ico">🔒</span><h3>Security Door Install</h3></div>
-        <div class="service-item"><span class="s-ico">🏚️</span><h3>Light Remodeling</h3></div>
+        <div class="service-item"><span class="s-ico">🏚️</span><h3>Roof Repair</h3></div>
+        <div class="service-item"><span class="s-ico">🍂</span><h3>Gutter Cleaning</h3></div>
+        <div class="service-item"><span class="s-ico">💦</span><h3>Pressure Washing</h3></div>
+        <div class="service-item"><span class="s-ico">🧽</span><h3>Cleaning</h3></div>
+        <div class="service-item"><span class="s-ico">📦</span><h3>Moving Assistance</h3></div>
       </div>
     </div>
   </section>
 
-  <!-- ===== Work / Portfolio ===== -->
-  <section class="work" id="work">
+  <!-- ===== How It Works ===== -->
+  <section class="process" id="process">
     <div class="container">
       <div class="section-head">
-        <span class="eyebrow">Our Work</span>
-        <h2>Recent <strong>Projects</strong></h2>
+        <span class="eyebrow">Simple &amp; Hassle-Free</span>
+        <h2>How It <strong>Works</strong></h2>
         <div class="rule"></div>
       </div>
-    </div>
-    <div class="work-grid">
-      <div class="work-tile" style="background-image:url('https://images.unsplash.com/photo-1572297870735-d5c8cd0a9f8f?auto=format&fit=crop&w=600&q=80')"><span class="label">Carpentry</span></div>
-      <div class="work-tile" style="background-image:url('https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&w=600&q=80')"><span class="label">Remodeling</span></div>
-      <div class="work-tile" style="background-image:url('https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=600&q=80')"><span class="label">Plumbing</span></div>
-      <div class="work-tile" style="background-image:url('https://images.unsplash.com/photo-1599809275671-b5942cabc7a2?auto=format&fit=crop&w=600&q=80')"><span class="label">Painting</span></div>
-      <div class="work-tile" style="background-image:url('https://images.unsplash.com/photo-1556909212-d5b604d0c90d?auto=format&fit=crop&w=600&q=80')"><span class="label">Installation</span></div>
-      <div class="work-tile" style="background-image:url('https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=600&q=80')"><span class="label">Repairs</span></div>
+      <div class="steps-grid">
+        <div class="step">
+          <div class="step-num">01</div>
+          <h3>Get In Touch</h3>
+          <p>Call, text, or send a message describing what you need done. Tell us about the job and we'll take it from there.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <h3>Free Quote &amp; Schedule</h3>
+          <p>We'll give you a clear, honest quote with no surprises and set up a time that works for your schedule.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <h3>Job Done Right</h3>
+          <p>We show up on time, do clean and reliable work, and don't leave until you're happy with the results.</p>
+        </div>
+      </div>
+      <div class="steps-cta">
+        <a href="#contact" class="btn">Get Your Free Quote</a>
+      </div>
     </div>
   </section>
 
-  <!-- ===== Testimonial ===== -->
-  <section class="testimonial">
+  <!-- ===== Reviews ===== -->
+  <section class="reviews" id="reviews">
     <div class="container">
-      <span class="eyebrow">What Clients Say</span>
-      <blockquote>
-        "Showed up on time, in uniform, and finished everything on my list in one
-        visit. Professional, tidy, and reasonably priced — I won't call anyone else."
-      </blockquote>
-      <cite>— Placeholder Customer, Your City</cite>
+      <div class="section-head">
+        <span class="eyebrow">What Clients Say</span>
+        <h2>5-Star <strong>Reviews</strong></h2>
+        <div class="rule"></div>
+        <div class="reviews-badge"><span class="stars">★★★★★</span> <strong>5.0</strong> &nbsp;·&nbsp; Rated on Google</div>
+      </div>
+      <div class="reviews-grid">
+
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p>Harrison's work was thorough and the project turned out better than expected. He listened to my rather complicated instructions and completed the task perfectly. I look forward to hiring him again!</p>
+          <div class="review-author">
+            <div class="review-avatar">A</div>
+            <div class="who"><strong>Alex W. Schubert</strong><span>via Google</span></div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p>Harrison was a pleasure to work with. He was professional, reliable, and did an excellent job installing our flooring. The work was clean, precise, and completed on time. We're very happy with the results and would definitely hire again.</p>
+          <div class="review-author">
+            <div class="review-avatar">L</div>
+            <div class="who"><strong>Leah Davis</strong><span>via Google</span></div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p>Harry's been my go-to handyman for years now, and he's one of those people you're just grateful to have. Anytime something breaks, needs installing, or I've got a half-finished project sitting around, he's the man to call. You can trust he's going to get the job done right the first time.</p>
+          <div class="review-author">
+            <div class="review-avatar">A</div>
+            <div class="who"><strong>Abdel Abdalla</strong><span>via Google</span></div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p>Harrison did a great job. He is professional, prompt, and was on time!</p>
+          <div class="review-author">
+            <div class="review-avatar">D</div>
+            <div class="who"><strong>Dylan Macduff</strong><span>via Google</span></div>
+          </div>
+        </div>
+
+      </div>
     </div>
   </section>
 
@@ -637,12 +750,19 @@
             </span></li>
           </ul>
         </div>
-        <form onsubmit="event.preventDefault(); alert('Thanks! This is a placeholder form.');">
+        <form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+          <!-- Web3Forms access key — get a free key at https://web3forms.com for harryshandymanservicesmiami@gmail.com and paste it below -->
+          <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+          <input type="hidden" name="subject" value="New quote request from Harry's Handyman website">
+          <input type="hidden" name="from_name" value="Harry's Handyman Website">
+          <!-- Honeypot field to block spam bots (must stay empty) -->
+          <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
           <input type="text" name="name" placeholder="Name" required>
           <input type="email" name="email" placeholder="Email" required>
           <input type="tel" name="phone" placeholder="Phone">
           <textarea name="message" placeholder="How can we help?" required></textarea>
           <button type="submit" class="btn">Send Message</button>
+          <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
         </form>
       </div>
     </div>
@@ -653,6 +773,58 @@
     <div class="footer-brand">Harry's <span>Handyman</span></div>
     <div class="fnote">&copy; 2026 Harry's Handyman Services. All Rights Reserved.</div>
   </footer>
+
+  <!-- ===== Contact form handler (Web3Forms) ===== -->
+  <script>
+    (function () {
+      var form = document.getElementById('contact-form');
+      var status = document.getElementById('form-status');
+      if (!form) return;
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        var key = form.querySelector('[name="access_key"]').value;
+        if (key === 'YOUR_ACCESS_KEY_HERE' || !key) {
+          status.className = 'form-status error';
+          status.textContent = 'Form not configured yet — add your Web3Forms access key.';
+          return;
+        }
+
+        var btn = form.querySelector('button[type="submit"]');
+        var original = btn.textContent;
+        btn.disabled = true;
+        btn.textContent = 'Sending…';
+        status.className = 'form-status';
+        status.textContent = '';
+
+        fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: new FormData(form)
+        })
+          .then(function (res) { return res.json(); })
+          .then(function (data) {
+            if (data.success) {
+              status.className = 'form-status success';
+              status.textContent = 'Thanks! Your message has been sent — we\'ll be in touch shortly.';
+              form.reset();
+            } else {
+              status.className = 'form-status error';
+              status.textContent = data.message || 'Something went wrong. Please call or email us instead.';
+            }
+          })
+          .catch(function () {
+            status.className = 'form-status error';
+            status.textContent = 'Network error. Please call or email us instead.';
+          })
+          .finally(function () {
+            btn.disabled = false;
+            btn.textContent = original;
+          });
+      });
+    })();
+  </script>
 
 </body>
 </html>
