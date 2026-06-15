@@ -96,15 +96,34 @@
     }
 
     .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.1rem;
+      transition: opacity 0.2s ease;
+    }
+    .brand:hover { opacity: 0.85; }
+    .brand-logo { height: 84px; width: auto; display: block; }
+    .brand-text {
       font-family: var(--head);
       font-weight: 700;
       font-size: 1.4rem;
       letter-spacing: 0.05em;
       text-transform: uppercase;
       color: var(--white);
+      line-height: 1;
+      padding: 0.9rem 0 0.9rem 1.3rem;
+      border-left: 1px solid rgba(255, 255, 255, 0.4);
     }
-    .brand:hover { color: var(--white); opacity: 0.85; }
-    .brand span { font-weight: 300; }
+    .brand-sub { font-weight: 300; }
+    .brand-name {
+      font-weight: 700;
+      /* brushed-silver metallic gradient to match the logo */
+      background: linear-gradient(180deg, #ffffff 0%, #e2e2e6 38%, #a8a8af 52%, #d8d8dd 70%, #f4f4f6 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: #d2d2d7; /* fallback if gradient-text unsupported */
+    }
 
     .nav-links {
       display: flex;
@@ -512,6 +531,7 @@
       text-align: center;
       padding: 3rem 1.75rem;
     }
+    /* --- Old text footer brand: replaced by logo image. Kept (commented) for easy revert ---
     .footer-brand {
       font-family: var(--head);
       font-weight: 700;
@@ -522,6 +542,8 @@
       margin-bottom: 0.75rem;
     }
     .footer-brand span { font-weight: 300; }
+    --- end old footer brand --- */
+    .footer-logo { height: 70px; width: auto; margin: 0 auto 0.75rem; display: block; }
     footer .fnote { font-size: 12px; letter-spacing: 0.05em; }
 
     /* ---------- Responsive ---------- */
@@ -545,7 +567,10 @@
   <!-- ===== Navigation ===== -->
   <header>
     <nav class="nav">
-      <a href="#home" class="brand">Harry's <span>Handyman Services</span></a>
+      <a href="#home" class="brand">
+        <img src="images/logo.png" alt="" class="brand-logo">
+        <span class="brand-text"><span class="brand-name">Harry's</span> <span class="brand-sub">Handyman Services</span></span>
+      </a>
       <ul class="nav-links">
         <li><a href="#home">Home</a></li>
         <li><a href="#about">About</a></li>
@@ -559,7 +584,7 @@
   <!-- ===== Hero ===== -->
   <section class="hero" id="home">
     <div class="hero-inner">
-      <p class="eyebrow">Honest Handyman Service</p>
+      <p class="eyebrow">Reliable Handyman Service</p>
       <h1>Handyman Services<br><strong>For Almost Every Need</strong></h1>
       <p>
         Looking for help with home repair, a honey-do list, or just more time in your
@@ -770,7 +795,7 @@
 
   <!-- ===== Footer ===== -->
   <footer>
-    <div class="footer-brand">Harry's <span>Handyman</span></div>
+    <div class="footer-brand"><img src="images/logo.png" alt="Harry's Handyman Services" class="footer-logo"></div>
     <div class="fnote">&copy; 2026 Harry's Handyman Services. All Rights Reserved.</div>
   </footer>
 
