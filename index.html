@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Harry's Handyman Services</title>
+  <meta name="description" content="Harry's Handyman Services — your one-call solution for honest, professional home repairs and maintenance.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #000000;
+      --ink: #1a1a1a;
+      --gray: #575757;
+      --muted: #888888;
+      --line: #dfdfdf;
+      --line-soft: #ececec;
+      --white: #ffffff;
+      --bg-alt: #f7f7f7;
+      --max: 1140px;
+      --head: 'Oswald', sans-serif;
+      --body: 'Open Sans', sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--body);
+      font-size: 15px;
+      line-height: 23px;
+      letter-spacing: 0.02em;
+      color: var(--ink);
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4, h5 {
+      font-family: var(--head);
+      text-transform: uppercase;
+      color: var(--black);
+      font-weight: 400;
+    }
+
+    a { color: var(--black); text-decoration: none; transition: color 0.2s ease; }
+    a:hover { color: var(--gray); }
+
+    img { max-width: 100%; height: auto; display: block; }
+
+    .container {
+      width: 100%;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 1.75rem;
+    }
+
+    /* ---------- Buttons ---------- */
+    .btn {
+      display: inline-block;
+      font-family: var(--head);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 1rem 2.4rem;
+      border: 2px solid var(--black);
+      background: transparent;
+      color: var(--black);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn:hover { background: var(--black); color: var(--white); }
+
+    .btn-white {
+      border-color: var(--white);
+      color: var(--white);
+    }
+    .btn-white:hover { background: var(--white); color: var(--black); }
+
+    /* ---------- Navigation ---------- */
+    header {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      z-index: 30;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 2rem 1.75rem;
+    }
+
+    .brand {
+      font-family: var(--head);
+      font-weight: 700;
+      font-size: 1.4rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+    .brand:hover { color: var(--white); opacity: 0.85; }
+    .brand span { font-weight: 300; }
+
+    .nav-links {
+      display: flex;
+      gap: 2.25rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: var(--head);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--white);
+      padding-bottom: 4px;
+      border-bottom: 2px solid transparent;
+    }
+    .nav-links a:hover { color: var(--white); border-bottom-color: var(--white); }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      /* Swap the url() below for a real photo of your work */
+      background:
+        linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+        url('https://images.unsplash.com/photo-1581244277943-fe4a9c777189?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      color: var(--white);
+    }
+
+    .hero-inner { max-width: 760px; padding: 6rem 1.75rem; }
+
+    .hero .eyebrow {
+      font-family: var(--head);
+      text-transform: uppercase;
+      letter-spacing: 0.35em;
+      font-size: 13px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 1.75rem;
+    }
+
+    .hero h1 {
+      font-family: var(--head);
+      color: var(--white);
+      font-weight: 300;
+      font-size: clamp(2.4rem, 6vw, 4.5rem);
+      line-height: 1.08;
+      letter-spacing: 0.04em;
+      margin-bottom: 1.75rem;
+    }
+    .hero h1 strong { font-weight: 700; }
+
+    .hero p {
+      font-family: var(--body);
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.82);
+      max-width: 600px;
+      margin: 0 auto 2.5rem;
+      text-transform: none;
+      letter-spacing: 0.01em;
+    }
+
+    .scroll-cue {
+      position: absolute;
+      bottom: 2rem; left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.6);
+      font-size: 1.5rem;
+      animation: bob 2s ease-in-out infinite;
+    }
+    @keyframes bob { 0%,100%{transform:translate(-50%,0)} 50%{transform:translate(-50%,8px)} }
+
+    /* ---------- Section scaffolding ---------- */
+    section { padding: 7rem 0; }
+
+    .section-head {
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto 4rem;
+    }
+    .section-head .eyebrow {
+      font-family: var(--head);
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 1rem;
+    }
+    .section-head h2 {
+      font-size: clamp(1.9rem, 4vw, 2.8rem);
+      font-weight: 300;
+      letter-spacing: 0.05em;
+      margin-bottom: 1.5rem;
+    }
+    .section-head h2 strong { font-weight: 700; }
+    .section-head .rule {
+      width: 60px; height: 2px;
+      background: var(--black);
+      margin: 0 auto;
+    }
+    .section-head p {
+      margin-top: 1.5rem;
+      color: var(--gray);
+      text-transform: none;
+    }
+
+    /* ---------- About ---------- */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .about-image {
+      min-height: 420px;
+      background:
+        linear-gradient(rgba(0,0,0,0.15), rgba(0,0,0,0.15)),
+        url('https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&fit=crop&w=900&q=80') center/cover no-repeat;
+    }
+    .about-text .eyebrow {
+      font-family: var(--head);
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      font-size: 12px;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 1rem;
+    }
+    .about-text h2 {
+      font-size: clamp(1.9rem, 4vw, 2.6rem);
+      font-weight: 300;
+      letter-spacing: 0.04em;
+      margin-bottom: 1.5rem;
+    }
+    .about-text h2 strong { font-weight: 700; }
+    .about-text p { color: var(--gray); margin-bottom: 1.25rem; }
+
+    .about-stats {
+      display: flex;
+      gap: 3rem;
+      margin-top: 2.25rem;
+      flex-wrap: wrap;
+    }
+    .stat .num {
+      font-family: var(--head);
+      font-size: 2.6rem;
+      font-weight: 300;
+      line-height: 1;
+      color: var(--black);
+    }
+    .stat .label {
+      font-family: var(--head);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 0.6rem;
+    }
+
+    /* ---------- Services ---------- */
+    .services { background: var(--bg-alt); }
+
+    .services-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line);
+    }
+    .service-item {
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 2rem 1.75rem;
+      background: var(--white);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+    .service-item:hover { background: var(--black); }
+    .service-item:hover h3,
+    .service-item:hover .s-ico { color: var(--white); }
+    .s-ico {
+      font-size: 1.4rem;
+      color: var(--gray);
+      width: 32px;
+      text-align: center;
+      flex-shrink: 0;
+      transition: color 0.2s ease;
+    }
+    .service-item h3 {
+      font-family: var(--head);
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      line-height: 1.4;
+      color: var(--ink);
+      transition: color 0.2s ease;
+    }
+
+    /* ---------- Work / Portfolio ---------- */
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+    }
+    .work-tile {
+      position: relative;
+      aspect-ratio: 4 / 3;
+      background-size: cover;
+      background-position: center;
+      overflow: hidden;
+    }
+    .work-tile::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0);
+      transition: background 0.25s ease;
+    }
+    .work-tile:hover::after { background: rgba(0,0,0,0.55); }
+    .work-tile .label {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+      color: var(--white);
+      font-family: var(--head);
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-size: 13px;
+    }
+    .work-tile:hover .label { opacity: 1; }
+
+    /* ---------- Testimonial ---------- */
+    .testimonial {
+      background:
+        linear-gradient(rgba(0,0,0,0.78), rgba(0,0,0,0.78)),
+        url('https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      color: var(--white);
+      text-align: center;
+    }
+    .testimonial .container { max-width: 760px; }
+    .testimonial .eyebrow {
+      font-family: var(--head);
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      font-size: 12px;
+      color: rgba(255,255,255,0.7);
+      display: block;
+      margin-bottom: 2rem;
+    }
+    .testimonial blockquote {
+      font-family: var(--head);
+      font-weight: 300;
+      font-size: clamp(1.3rem, 3vw, 2rem);
+      line-height: 1.5;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+    .testimonial cite {
+      display: block;
+      margin-top: 2rem;
+      font-family: var(--body);
+      font-style: normal;
+      font-size: 13px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+    }
+
+    /* ---------- Contact ---------- */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 4rem;
+    }
+    .contact-info h3 {
+      font-family: var(--head);
+      font-weight: 300;
+      font-size: 1.6rem;
+      letter-spacing: 0.04em;
+      margin-bottom: 1.25rem;
+    }
+    .contact-info > p { color: var(--gray); margin-bottom: 2rem; }
+    .contact-info ul { list-style: none; }
+    .contact-info li {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      padding: 1.1rem 0;
+      border-top: 1px solid var(--line-soft);
+      color: var(--gray);
+    }
+    .contact-info li:last-child { border-bottom: 1px solid var(--line-soft); }
+    .contact-info .c-ico { color: var(--black); width: 22px; flex-shrink: 0; }
+    .contact-info strong {
+      font-family: var(--head);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 11px;
+      color: var(--black);
+      display: block;
+      margin-bottom: 0.15rem;
+    }
+
+    form { display: flex; flex-direction: column; gap: 0; }
+    form input,
+    form textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      background: var(--white);
+      font-family: var(--body);
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 1rem 1.1rem;
+      margin-bottom: 1.25rem;
+      color: var(--ink);
+      transition: border-color 0.2s ease;
+    }
+    form input:focus,
+    form textarea:focus { outline: none; border-color: var(--black); }
+    form textarea { resize: vertical; min-height: 140px; }
+    form .btn { align-self: flex-start; }
+
+    /* ---------- Footer ---------- */
+    footer {
+      background: var(--black);
+      color: rgba(255,255,255,0.55);
+      text-align: center;
+      padding: 3rem 1.75rem;
+    }
+    .footer-brand {
+      font-family: var(--head);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--white);
+      font-size: 1.2rem;
+      margin-bottom: 0.75rem;
+    }
+    .footer-brand span { font-weight: 300; }
+    footer .fnote { font-size: 12px; letter-spacing: 0.05em; }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 900px) {
+      .services-list { grid-template-columns: repeat(2, 1fr); }
+      .work-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; }
+      section { padding: 4.5rem 0; }
+    }
+    @media (max-width: 560px) {
+      .services-list, .work-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== Navigation ===== -->
+  <header>
+    <nav class="nav">
+      <a href="#home" class="brand">Harry's <span>Handyman</span></a>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ===== Hero ===== -->
+  <section class="hero" id="home">
+    <div class="hero-inner">
+      <p class="eyebrow">Honest Handyman Service</p>
+      <h1>Handyman Services<br><strong>For Almost Every Need</strong></h1>
+      <p>
+        Looking for help with home repair, a honey-do list, or just more time in your
+        busy schedule? You've found the right place. We're your one-call solution —
+        on time, in uniform, and done right.
+      </p>
+      <a href="#contact" class="btn btn-white">Request a Quote</a>
+    </div>
+    <div class="scroll-cue">⌄</div>
+  </section>
+
+  <!-- ===== About ===== -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-image" role="img" aria-label="Handyman at work (placeholder)"></div>
+        <div class="about-text">
+          <span class="eyebrow">About Us</span>
+          <h2>Your <strong>One-Call</strong> Solution</h2>
+          <p>
+            Harry's Handyman is your one-call solution for a wide range of home
+            maintenance and repair needs. Our uniformed technicians are fully insured
+            professionals who arrive on time with the tools to complete the job right.
+          </p>
+          <p>
+            Our technicians are highly skilled craftsmen with an average of 10+ years'
+            experience in the trades — known for quality workmanship and professional
+            reliability, so you know the job will be done correctly and efficiently.
+          </p>
+          <div class="about-stats">
+            <div class="stat"><div class="num">10+</div><div class="label">Years Experience</div></div>
+            <div class="stat"><div class="num">500+</div><div class="label">Jobs Completed</div></div>
+            <div class="stat"><div class="num">100%</div><div class="label">Insured</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Services ===== -->
+  <section class="services" id="services">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">What We Do</span>
+        <h2>Local <strong>Handyman</strong> Service</h2>
+        <div class="rule"></div>
+      </div>
+      <div class="services-list">
+        <div class="service-item"><span class="s-ico">⚡</span><h3>Basic Electrical</h3></div>
+        <div class="service-item"><span class="s-ico">🚰</span><h3>Basic Plumbing</h3></div>
+        <div class="service-item"><span class="s-ico">🧱</span><h3>Drywall Repair</h3></div>
+        <div class="service-item"><span class="s-ico">◧</span><h3>Tile Repair</h3></div>
+        <div class="service-item"><span class="s-ico">🚪</span><h3>Door Installation</h3></div>
+        <div class="service-item"><span class="s-ico">🪚</span><h3>Finish Carpentry</h3></div>
+        <div class="service-item"><span class="s-ico">🧷</span><h3>Child Proofing</h3></div>
+        <div class="service-item"><span class="s-ico">🔌</span><h3>Appliance Installation</h3></div>
+        <div class="service-item"><span class="s-ico">♿</span><h3>Wheelchair Ramps</h3></div>
+        <div class="service-item"><span class="s-ico">📚</span><h3>Shelving Installation</h3></div>
+        <div class="service-item"><span class="s-ico">🖼️</span><h3>Picture Hanging</h3></div>
+        <div class="service-item"><span class="s-ico">🚿</span><h3>Faucet Repair / Replace</h3></div>
+        <div class="service-item"><span class="s-ico">📺</span><h3>TV &amp; Tech Hookups</h3></div>
+        <div class="service-item"><span class="s-ico">🛋️</span><h3>Furniture Assembly</h3></div>
+        <div class="service-item"><span class="s-ico">🌀</span><h3>Ceiling Fan Install</h3></div>
+        <div class="service-item"><span class="s-ico">🎨</span><h3>Interior &amp; Exterior Painting</h3></div>
+        <div class="service-item"><span class="s-ico">🔒</span><h3>Security Door Install</h3></div>
+        <div class="service-item"><span class="s-ico">🏚️</span><h3>Light Remodeling</h3></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Work / Portfolio ===== -->
+  <section class="work" id="work">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Our Work</span>
+        <h2>Recent <strong>Projects</strong></h2>
+        <div class="rule"></div>
+      </div>
+    </div>
+    <div class="work-grid">
+      <div class="work-tile" style="background-image:url('https://images.unsplash.com/photo-1572297870735-d5c8cd0a9f8f?auto=format&fit=crop&w=600&q=80')"><span class="label">Carpentry</span></div>
+      <div class="work-tile" style="background-image:url('https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&w=600&q=80')"><span class="label">Remodeling</span></div>
+      <div class="work-tile" style="background-image:url('https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=600&q=80')"><span class="label">Plumbing</span></div>
+      <div class="work-tile" style="background-image:url('https://images.unsplash.com/photo-1599809275671-b5942cabc7a2?auto=format&fit=crop&w=600&q=80')"><span class="label">Painting</span></div>
+      <div class="work-tile" style="background-image:url('https://images.unsplash.com/photo-1556909212-d5b604d0c90d?auto=format&fit=crop&w=600&q=80')"><span class="label">Installation</span></div>
+      <div class="work-tile" style="background-image:url('https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=600&q=80')"><span class="label">Repairs</span></div>
+    </div>
+  </section>
+
+  <!-- ===== Testimonial ===== -->
+  <section class="testimonial">
+    <div class="container">
+      <span class="eyebrow">What Clients Say</span>
+      <blockquote>
+        "Showed up on time, in uniform, and finished everything on my list in one
+        visit. Professional, tidy, and reasonably priced — I won't call anyone else."
+      </blockquote>
+      <cite>— Placeholder Customer, Your City</cite>
+    </div>
+  </section>
+
+  <!-- ===== Contact ===== -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Get In Touch</span>
+        <h2>Contact <strong>Us</strong></h2>
+        <div class="rule"></div>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h3>One Call Is All It Takes</h3>
+          <p>Tell us about your project and we'll get back to you within one business day.</p>
+          <ul>
+            <li><span class="c-ico">📞</span><span><strong>Phone</strong>(000) 000-0000</span></li>
+            <li><span class="c-ico">✉️</span><span><strong>Email</strong>hello@example.com</span></li>
+            <li><span class="c-ico">📍</span><span><strong>Address</strong>123 Main St, Your City, ST 00000</span></li>
+            <li><span class="c-ico">🕒</span><span><strong>Hours</strong>Mon–Sat, 8:00 AM – 6:00 PM</span></li>
+          </ul>
+        </div>
+        <form onsubmit="event.preventDefault(); alert('Thanks! This is a placeholder form.');">
+          <input type="text" name="name" placeholder="Name" required>
+          <input type="email" name="email" placeholder="Email" required>
+          <input type="tel" name="phone" placeholder="Phone">
+          <textarea name="message" placeholder="How can we help?" required></textarea>
+          <button type="submit" class="btn">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer>
+    <div class="footer-brand">Harry's <span>Handyman</span></div>
+    <div class="fnote">&copy; 2026 Harry's Handyman Services. All Rights Reserved.</div>
+  </footer>
+
+</body>
+</html>
